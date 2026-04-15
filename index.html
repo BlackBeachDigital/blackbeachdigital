@@ -204,8 +204,8 @@
         <section id="about" class="py-40 relative z-10 border-y border-gray-900 mt-20 overflow-hidden">
             <!-- Background Container -->
             <div class="absolute inset-0 z-0 pointer-events-none">
-                <!-- Switched to object-bottom on mobile, but object-center on desktop (md+) -->
-                <video id="about-video" autoplay loop muted playsinline class="w-full h-full object-cover object-bottom md:object-center">
+                <!-- Removed md:object-center so it always pins to the bottom -->
+                <video id="about-video" autoplay loop muted playsinline class="w-full h-full object-cover object-bottom">
                     <source src="videos/vanuatu-tree.mp4" type="video/mp4">
                 </video>
                 
