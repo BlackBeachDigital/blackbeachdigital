@@ -204,7 +204,7 @@
         <section id="about" class="py-40 relative z-10 border-y border-gray-900 mt-20 overflow-hidden">
             <!-- Background Container -->
             <div class="absolute inset-0 z-0 pointer-events-none">
-                <video autoplay loop muted playsinline class="w-full h-full object-cover object-bottom">
+                <video id="about-video" autoplay loop muted playsinline class="w-full h-full object-cover object-bottom">
                     <source src="videos/vanuatu-tree.mp4" type="video/mp4">
                 </video>
                 
@@ -304,6 +304,16 @@
 
         window.onload = function() {
             initScrollAnimations();
+            
+            // Force video playback for strict browsers/deployment environments
+            const video = document.getElementById('about-video');
+            if (video) {
+                // The Promise catch block will silently handle browser autoplay rejections
+                // and help you debug if the file is missing on the server.
+                video.play().catch(error => {
+                    console.warn("Video failed to play automatically:", error);
+                });
+            }
         };
 
         // Scroll Reveal Animations
