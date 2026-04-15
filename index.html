@@ -201,11 +201,12 @@
         </section>
 
         <!-- About Statement -->
-        <section id="about" class="py-40 relative z-10 border-y border-gray-900 mt-20 overflow-hidden">
+        <section id="about" class="py-40 md:py-64 relative z-10 border-y border-gray-900 mt-20 overflow-hidden">
             <!-- Background Container -->
-            <div class="absolute inset-0 z-0 pointer-events-none">
-                <!-- Forced bottom alignment using inline styles to override any browser quirks -->
-                <video id="about-video" autoplay loop muted playsinline class="w-full h-full object-cover" style="object-position: center 100%;">
+            <!-- Added flex, justify-center, and bg-black to center the constrained video and fill edges with black -->
+            <div class="absolute inset-0 z-0 pointer-events-none flex justify-center bg-black">
+                <!-- Added max-w-[3000px] and enforced object-bottom for all screen sizes -->
+                <video id="about-video" autoplay loop muted playsinline class="w-full h-full max-w-[3000px] object-cover object-bottom">
                     <source src="videos/vanuatu-tree.mp4" type="video/mp4">
                 </video>
                 
@@ -213,8 +214,8 @@
                 <div class="absolute inset-0 bg-black/60"></div>
                 
                 <!-- Feathered edge gradients to blend smoothly into the site's background -->
-                <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#050505] to-transparent"></div>
-                <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent"></div>
+                <div class="absolute top-0 left-0 w-full h-24 md:h-32 bg-gradient-to-b from-[#050505] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-[#050505] to-transparent"></div>
             </div>
 
             <div class="max-w-6xl mx-auto px-6 text-center reveal relative z-10">
