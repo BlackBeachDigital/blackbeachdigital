@@ -119,18 +119,20 @@
         <!-- Hero Section -->
         <section class="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-black overflow-hidden">
             <!-- Background Container -->
-            <div class="absolute inset-0 z-0 pointer-events-none">
-                <!-- object-contain ensures the video is never cropped. object-top pins it to the top so extra space falls below -->
-                <video id="hero-video" autoplay loop muted playsinline class="w-full h-full object-contain object-top opacity-90">
-                    <source src="https://blackbeach.netlify.app/videos/timelapse-noaudio.webm" type="video/webm">
-                </video>
+            <div class="absolute inset-0 z-0 pointer-events-none flex justify-center items-start bg-black">
+                <!-- Wrapper that perfectly matches the video's aspect ratio, replicating object-contain exactly -->
+                <div class="relative w-full max-w-[calc(100vh*16/9)] aspect-video">
+                    <video id="hero-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
+                        <source src="https://blackbeach.netlify.app/videos/timelapse-noaudio.webm" type="video/webm">
+                    </video>
+                    
+                    <!-- Narrow fade to black on the left and right sides, now attached directly to the video's actual edges -->
+                    <div class="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-black to-transparent"></div>
+                    <div class="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-black to-transparent"></div>
+                </div>
                 
-                <!-- Dark overlay to ensure text readability and smoothly blend the video into the black background -->
+                <!-- Dark overlay spanning entire screen width to ensure text readability and smoothly blend the video downward -->
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black"></div>
-                
-                <!-- Narrow fade to black on the left and right sides -->
-                <div class="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-[#050505] to-transparent"></div>
-                <div class="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-[#050505] to-transparent"></div>
             </div>
 
             <div class="max-w-6xl mx-auto px-6 text-center reveal active relative z-10">
