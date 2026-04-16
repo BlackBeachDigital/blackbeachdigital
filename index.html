@@ -106,9 +106,8 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-500 bg-transparent border-b border-transparent" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="#" id="nav-logo" class="font-display font-bold text-xl tracking-widest text-white uppercase flex items-center gap-2 opacity-0 pointer-events-none transition-opacity duration-500">
-                <div class="w-2 h-2 bg-white rounded-full"></div>
-                Black Beach
+            <a href="#" id="nav-logo" class="flex items-center opacity-0 pointer-events-none transition-opacity duration-500">
+                <img src="https://blackbeach.netlify.app/images/blackbeach-logo-500.png" alt="Black Beach Digital" class="h-6 md:h-8 w-auto">
             </a>
             <a href="#contact" class="inline-block border border-white hover:bg-white hover:text-black text-white px-5 py-2 rounded text-[11px] sm:text-xs font-semibold tracking-[0.1em] transition-all duration-300">
                 COFFEE?
@@ -254,7 +253,7 @@
                 <div class="reveal">
                     <span class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4">// GET IN TOUCH</span>
                     <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-none">Let's compete<br>together.</h2>
-                    <p class="text-gray-400 mb-12 text-lg font-light max-w-md">Tell us how you really feel in the form.</p>
+                    <p class="text-gray-400 mb-12 text-lg font-light max-w-md">Tell us how you really feel in the form... and please, stop mailing us bags of black sand.</p>
                     
                     <div class="space-y-8 text-gray-400 font-light border-l border-gray-800 pl-6">
                         <div>
@@ -271,10 +270,10 @@
                 <div class="reveal">
                     <form class="space-y-6" onsubmit="handleFormSubmit(event)">
                         <div>
-                            <input type="text" placeholder="Your Name (required)" required class="input-minimal">
+                            <input type="text" placeholder="Your Name" required class="input-minimal">
                         </div>
                         <div>
-                            <input type="email" placeholder="Your Email (required)" required class="input-minimal">
+                            <input type="email" placeholder="Your Email" required class="input-minimal">
                         </div>
                         <div>
                             <textarea placeholder="Your Message" rows="5" class="input-minimal resize-none"></textarea>
@@ -290,10 +289,16 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-8 border-t border-gray-900 relative z-10 bg-black">
-            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 tracking-wide">
-                <p>&copy; 2026 Monfre LLC DBA Black Beach Digital. All rights reserved.</p>
-                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-4 md:mt-0 hover:text-white transition-colors uppercase tracking-[0.1em]">Back to Top ↑</button>
+        <footer class="py-12 border-t border-gray-900 relative z-10 bg-black">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+                <!-- Large Centered Logo, reduced size by 50% -->
+                <img src="https://blackbeach.netlify.app/images/blackbeach-logo-500.png" alt="Black Beach Digital" class="w-full max-w-[250px] h-auto opacity-75 hover:opacity-100 transition-opacity mb-10">
+                
+                <!-- Small Text / Links -->
+                <div class="w-full flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 tracking-wide gap-6">
+                    <p class="text-center md:text-left">&copy; 2026 Monfre LLC DBA Black Beach Digital. All rights reserved.</p>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-white transition-colors uppercase tracking-[0.1em]">Back to Top ↑</button>
+                </div>
             </div>
         </footer>
     </main>
