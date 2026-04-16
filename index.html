@@ -122,7 +122,7 @@
             <div class="absolute inset-0 z-0 pointer-events-none flex justify-center items-start bg-black">
                 <!-- Wrapper that perfectly matches the video's aspect ratio, replicating object-contain exactly -->
                 <div class="relative w-full max-w-[calc(100vh*16/9)] aspect-video">
-                    <video id="hero-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
+                    <video id="hero-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-100">
                         <source src="https://blackbeach.netlify.app/videos/timelapse-noaudio.webm" type="video/webm">
                     </video>
                     
@@ -132,19 +132,19 @@
                 </div>
                 
                 <!-- Dark overlay spanning entire screen width to ensure text readability and smoothly blend the video downward -->
-                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black"></div>
             </div>
 
             <div class="max-w-6xl mx-auto px-6 text-center reveal active relative z-10">
                 <!-- Pill removed but height preserved to keep the video text visible -->
                 <div class="mb-6 h-8 flex justify-center"></div>
                 
-                <h1 class="font-display text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter text-white mb-8 leading-[1.05]">
+                <h1 class="font-display text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter text-white mb-8 leading-[1.05] drop-shadow-2xl">
                     Optimize for <span class="text-gray-300">Today.</span><br>
                     Prepare for <span class="text-gray-300">Tomorrow.</span>
                 </h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed tracking-wide">
-                    WARNING: Your competitors will be mad you found us.
+                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed tracking-wide drop-shadow-md">
+                    ⚠ WARNING: Your competitors will be mad you found us.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <a href="#contact" class="bg-white text-black px-8 py-4 rounded font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto text-sm tracking-wide uppercase">
