@@ -86,6 +86,18 @@
             transform: translateY(0);
         }
 
+        /* Service Icon Animation */
+        .service-icon {
+            opacity: 0;
+            transform: scale(0.5) rotate(-45deg);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition-delay: 0.3s; /* Delays slightly so it pops in after the text starts sliding up */
+        }
+        .reveal.active .service-icon {
+            opacity: 0.9;
+            transform: scale(1) rotate(0deg);
+        }
+
         /* Ambient Glow Positioning */
         .ambient-glow {
             position: fixed;
@@ -175,7 +187,9 @@
                 <div class="space-y-32">
                     <!-- Service 01 -->
                     <div class="flex flex-col md:flex-row items-start gap-8 md:gap-20 reveal">
-                        <div class="text-5xl md:text-7xl font-display font-light text-gray-800 w-24 flex-shrink-0">01</div>
+                        <div class="w-12 md:w-24 flex-shrink-0 flex justify-start pt-1 md:pt-2">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-6 h-6 md:w-8 md:h-8 service-icon">
+                        </div>
                         <div class="flex-1">
                             <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Digital Experience Consulting</h3>
                             <p class="text-gray-400 text-lg leading-relaxed font-light">We ensure your digital presence is optimized to guide your customers and potential customers through your funnel efficiently and effectively. Nothing kills a business faster than a poor digital experience. Make sure your system works flawlessly before scaling.</p>
@@ -184,7 +198,9 @@
                     
                     <!-- Service 02 -->
                     <div class="flex flex-col md:flex-row items-start gap-8 md:gap-20 reveal">
-                        <div class="text-5xl md:text-7xl font-display font-light text-gray-800 w-24 flex-shrink-0">02</div>
+                        <div class="w-12 md:w-24 flex-shrink-0 flex justify-start pt-1 md:pt-2">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-6 h-6 md:w-8 md:h-8 service-icon">
+                        </div>
                         <div class="flex-1">
                             <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Media Strategy & Execution</h3>
                             <p class="text-gray-400 text-lg leading-relaxed font-light">Leveraging the combination of technology, services, and data to deliver high-performing, customized media plans that are transparent to the placement level. Our media strategies involve paid and earned media in every stage of the sales funnel.</p>
@@ -193,7 +209,9 @@
 
                     <!-- Service 03 -->
                     <div class="flex flex-col md:flex-row items-start gap-8 md:gap-20 reveal">
-                        <div class="text-5xl md:text-7xl font-display font-light text-gray-800 w-24 flex-shrink-0">03</div>
+                        <div class="w-12 md:w-24 flex-shrink-0 flex justify-start pt-1 md:pt-2">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-6 h-6 md:w-8 md:h-8 service-icon">
+                        </div>
                         <div class="flex-1">
                             <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Direct-To-Consumer Growth</h3>
                             <p class="text-gray-400 text-lg leading-relaxed font-light">We specialize in working with challenger DTC brands who are on the cusp of disrupting an industry. From clothing to solar panels, we've helped DTC optimize their customer growth strategy to always keep them one step ahead of their established competitors.</p>
@@ -202,7 +220,9 @@
 
                     <!-- Service 04 -->
                     <div class="flex flex-col md:flex-row items-start gap-8 md:gap-20 reveal">
-                        <div class="text-5xl md:text-7xl font-display font-light text-gray-800 w-24 flex-shrink-0">04</div>
+                        <div class="w-12 md:w-24 flex-shrink-0 flex justify-start pt-1 md:pt-2">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-6 h-6 md:w-8 md:h-8 service-icon">
+                        </div>
                         <div class="flex-1">
                             <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Marketing Attribution & Analytics</h3>
                             <p class="text-gray-400 text-lg leading-relaxed font-light">Our passion for transparency in media carries over into how we report results back to our clients. We create analytics frameworks, dashboards, and reporting structures that work. We've helped clients attribute millions in sales back to our efforts.</p>
