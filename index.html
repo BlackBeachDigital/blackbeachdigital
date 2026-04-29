@@ -104,19 +104,13 @@
             transform: scale(1) rotate(0deg);
         }
 
-        /* Infinite Logo Slider */
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Hide scrollbar for interactive slider */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        .slider-track {
-            display: flex;
-            width: max-content;
-            /* Adjust the 40s duration to make it faster or slower */
-            animation: scroll-left 40s linear infinite; 
-        }
-        .slider-track:hover {
-            animation-play-state: paused;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         /* Ambient Glow Positioning */
@@ -300,15 +294,26 @@
             </div>    
 
             <!-- Logo/Partner Slider (Full Width) -->
-            <div class="relative w-full overflow-hidden bg-gray-900/30 border-y border-gray-900/80 py-12 reveal">
+            <!-- Added 'group' class here to handle the arrow hover effects -->
+            <div class="relative w-full overflow-hidden bg-gray-900/30 border-y border-gray-900/80 py-12 reveal group">
                 <!-- Fade masks for smooth entry/exit -->
                 <div class="absolute inset-y-0 left-0 w-16 md:w-48 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute inset-y-0 right-0 w-16 md:w-48 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
                 
-                <!-- The track is now empty; JavaScript will fill it! -->
-                <div class="slider-track gap-16 md:gap-24 px-8 md:px-12" id="logo-slider-track">
-                    <!-- Loading state, gets overwritten instantly by JS -->
-                    <div class="text-gray-600 font-display uppercase tracking-widest text-sm animate-pulse">Loading Partners...</div>
+                <!-- Navigation Arrows (Desktop Only: hidden on mobile, flex on md and up) -->
+                <button id="slider-prev" class="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 focus:opacity-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button id="slider-next" class="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 focus:opacity-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+
+                <!-- Scrollable Track Container -->
+                <div id="slider-container" class="w-full overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
+                    <div class="flex w-max gap-16 md:gap-24 px-8 md:px-12 items-center" id="logo-slider-track">
+                        <!-- Loading state, gets overwritten instantly by JS -->
+                        <div class="text-gray-600 font-display uppercase tracking-widest text-sm animate-pulse">Loading Partners...</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -567,6 +572,122 @@
             
             // Inject the set TWICE to create the seamless infinite loop
             track.innerHTML = singleSetHTML + singleSetHTML;
+
+            // --- Interactive Drag & Auto-Scroll Logic ---
+            const container = document.getElementById('slider-container');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let isAutoScrolling = true;
+
+            // Checks if we hit the edge and secretly loops back to the middle
+            function checkBoundary() {
+                if (logos.length === 0 || track.children.length <= logos.length) return;
+                
+                // Calculate exact pixel width of one full set of logos
+                const resetWidth = track.children[logos.length].offsetLeft - track.children[0].offsetLeft;
+                
+                if (container.scrollLeft >= resetWidth) {
+                    container.scrollLeft -= resetWidth;
+                    return true; // Snapped forward
+                } else if (container.scrollLeft <= 0) {
+                    container.scrollLeft += resetWidth;
+                    return false; // Snapped backward
+                }
+                return null;
+            }
+
+            // Continuous animation loop
+            function autoScroll() {
+                if (isAutoScrolling && logos.length > 0) {
+                    container.scrollLeft += 1; // Change this number to adjust scroll speed
+                    checkBoundary();
+                }
+                requestAnimationFrame(autoScroll);
+            }
+
+            // Start auto-scroll
+            requestAnimationFrame(autoScroll);
+
+            // Mouse Events (Desktop)
+            container.addEventListener('mouseenter', () => isAutoScrolling = false);
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+                isAutoScrolling = true;
+            });
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isAutoScrolling = false;
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (startX - x) * 2; // Drag speed multiplier
+                container.scrollLeft = scrollLeft + walk;
+                
+                // Update anchor points if boundary snap occurs while actively dragging
+                const snap = checkBoundary();
+                const resetWidth = track.children[logos.length].offsetLeft - track.children[0].offsetLeft;
+                if (snap === true) {
+                    scrollLeft -= resetWidth;
+                } else if (snap === false) {
+                    scrollLeft += resetWidth;
+                }
+            });
+
+            // Touch Events (Mobile/Tablet)
+            container.addEventListener('touchstart', () => {
+                isAutoScrolling = false;
+            }, { passive: true });
+
+            container.addEventListener('touchend', () => {
+                isAutoScrolling = true;
+            });
+
+            container.addEventListener('scroll', () => {
+                if (!isAutoScrolling) {
+                    checkBoundary();
+                }
+            }, { passive: true });
+
+            // --- Arrow Button Logic ---
+            const prevBtn = document.getElementById('slider-prev');
+            const nextBtn = document.getElementById('slider-next');
+            let autoScrollTimeout;
+
+            function handleManualScroll(direction) {
+                isAutoScrolling = false;
+                // Scroll by half of the visible container width
+                const scrollAmount = container.clientWidth * 0.5; 
+                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                
+                // Pause auto-scrolling for 2 seconds after clicking an arrow
+                clearTimeout(autoScrollTimeout);
+                autoScrollTimeout = setTimeout(() => {
+                    if (!isDown) isAutoScrolling = true;
+                }, 2000);
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => handleManualScroll(-1));
+                prevBtn.addEventListener('mouseenter', () => isAutoScrolling = false);
+                prevBtn.addEventListener('mouseleave', () => isAutoScrolling = true);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => handleManualScroll(1));
+                nextBtn.addEventListener('mouseenter', () => isAutoScrolling = false);
+                nextBtn.addEventListener('mouseleave', () => isAutoScrolling = true);
+            }
         }
     </script>
 </body>
