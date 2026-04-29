@@ -136,7 +136,8 @@
             <a href="#" id="nav-logo" class="flex items-center opacity-0 pointer-events-none transition-opacity duration-500">
                 <img src="https://blackbeach.netlify.app/images/blackbeach-logo-500.png" alt="Black Beach Digital" class="h-6 md:h-8 w-auto">
             </a>
-            <a href="#contact" class="inline-block border border-white hover:bg-white hover:text-black text-white px-5 py-2 rounded text-[11px] sm:text-xs font-semibold tracking-[0.1em] transition-all duration-300">
+            <!-- Added id="nav-coffee" and initial hidden states (opacity-0 pointer-events-none) -->
+            <a href="#contact" id="nav-coffee" class="inline-block border border-white hover:bg-white hover:text-black text-white px-5 py-2 rounded text-[11px] sm:text-xs font-semibold tracking-[0.1em] transition-all duration-300 opacity-0 pointer-events-none">
                 COFFEE?
             </a>
         </div>
@@ -294,17 +295,17 @@
             </div>    
 
             <!-- Logo/Partner Slider (Full Width) -->
-            <!-- Added 'group' class here to handle the arrow hover effects -->
-            <div class="relative w-full overflow-hidden bg-gray-900/30 border-y border-gray-900/80 py-12 reveal group">
+            <!-- Changed to a named group 'group/slider' so it doesn't conflict with the logos -->
+            <div class="relative w-full overflow-hidden bg-gray-900/30 border-y border-gray-900/80 py-12 reveal group/slider">
                 <!-- Fade masks for smooth entry/exit -->
                 <div class="absolute inset-y-0 left-0 w-16 md:w-48 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute inset-y-0 right-0 w-16 md:w-48 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
                 
                 <!-- Navigation Arrows (Desktop Only: hidden on mobile, flex on md and up) -->
-                <button id="slider-prev" class="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 focus:opacity-100">
+                <button id="slider-prev" class="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 focus:opacity-100">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </button>
-                <button id="slider-next" class="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100 focus:opacity-100">
+                <button id="slider-next" class="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/60 hover:bg-white/20 border border-white/20 rounded-full items-center justify-center text-white transition-all backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 focus:opacity-100">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
 
@@ -459,18 +460,27 @@
         function initNavbarScroll() {
             const navbar = document.getElementById('navbar');
             const logo = document.getElementById('nav-logo');
+            const coffeeBtn = document.getElementById('nav-coffee');
             
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
                     navbar.classList.add('bg-black/80', 'backdrop-blur-md', 'border-white/5');
                     navbar.classList.remove('bg-transparent', 'border-transparent');
+                    
                     logo.classList.remove('opacity-0', 'pointer-events-none');
                     logo.classList.add('opacity-100', 'pointer-events-auto');
+                    
+                    coffeeBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    coffeeBtn.classList.add('opacity-100', 'pointer-events-auto');
                 } else {
                     navbar.classList.add('bg-transparent', 'border-transparent');
                     navbar.classList.remove('bg-black/80', 'backdrop-blur-md', 'border-white/5');
+                    
                     logo.classList.add('opacity-0', 'pointer-events-none');
                     logo.classList.remove('opacity-100', 'pointer-events-auto');
+                    
+                    coffeeBtn.classList.add('opacity-0', 'pointer-events-none');
+                    coffeeBtn.classList.remove('opacity-100', 'pointer-events-auto');
                 }
             });
         }
@@ -550,18 +560,19 @@
                 // Create an alt tag by removing the extension (e.g. 'boho' from 'boho.png')
                 const altText = logo.filename.split('.')[0].toUpperCase();
                 
-                const innerContent = `<img src="${imgSrc}" alt="${altText}" class="max-w-full max-h-16 md:max-h-20 object-contain opacity-50 group-hover:opacity-100 transition-all duration-300 filter grayscale group-hover:grayscale-0">`;
+                // Changed to group-hover/logo to isolate the effect
+                const innerContent = `<img src="${imgSrc}" alt="${altText}" class="max-w-full max-h-16 md:max-h-20 object-contain opacity-50 group-hover/logo:opacity-100 transition-all duration-300 filter grayscale group-hover/logo:grayscale-0">`;
 
                 // If a link exists, wrap it in an anchor tag that opens in a new tab
                 if (logo.link && logo.link !== '') {
                     return `
-                    <a href="${logo.link}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-32 md:w-48 group cursor-pointer flex-shrink-0">
+                    <a href="${logo.link}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-32 md:w-48 group/logo cursor-pointer flex-shrink-0">
                         ${innerContent}
                     </a>`;
                 } else {
                     // Otherwise, just show the logo inside a normal div
                     return `
-                    <div class="flex items-center justify-center w-32 md:w-48 group flex-shrink-0">
+                    <div class="flex items-center justify-center w-32 md:w-48 group/logo flex-shrink-0">
                         ${innerContent}
                     </div>`;
                 }
