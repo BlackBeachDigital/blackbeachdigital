@@ -75,6 +75,12 @@
             color: #666;
         }
 
+        /* Custom Rich Text Placeholder Logic */
+        .hide-placeholder:not(:placeholder-shown) ~ .rich-placeholder {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         /* Scroll Reveal Animations */
         .reveal {
             opacity: 0;
@@ -161,11 +167,8 @@
                     ⚠ WARNING: Your competitors will be furious you found us.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#contact" class="bg-white text-black px-8 py-4 rounded font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto text-sm tracking-wide uppercase">
-                        Request Consultation
-                    </a>
                     <a href="#services" class="text-white border border-gray-700 hover:border-gray-300 hover:bg-white/5 px-8 py-4 rounded font-semibold transition-all w-full sm:w-auto text-sm tracking-wide uppercase backdrop-blur-sm">
-                        Explore Services
+                        👓 What would you say you do here?
                     </a>
                 </div>
             </div>
@@ -177,12 +180,14 @@
                 <div class="mb-24 md:mb-32 reveal flex flex-col md:flex-row md:justify-between md:items-end border-b border-gray-800 pb-12">
                     <div class="max-w-2xl">
                         <span class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4">// OUR AGENCY</span>
-                        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">Marketing for the modern world.</h2>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">A digital-first agency built for the modern attention span.</h2>
                     </div>
-                    <p class="text-gray-400 max-w-md text-base mt-6 md:mt-0 font-light">
-                        We approach media with a data-first mindset, leveraging technology, services, and data to deliver high-performing campaigns.
+                    <p class="text-gray-400 max-w-lg text-base mt-6 md:mt-0 font-light">
+                        Black Beach drives results by bridging the gap between our top-tier creative talent and deep technical expertise. With a data-first mindset, we leverage modern technology and best-in-class experts to execute campaigns and websites that perform.
                     </p>
                 </div>
+
+                <h3 class="text-2xl md:text-3xl font-display font-medium text-white mb-16 reveal">What we help our partners do:</h3>
 
                 <div class="space-y-32">
                     <!-- Service 01 -->
@@ -191,8 +196,8 @@
                             <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Digital Experience Consulting</h3>
-                            <p class="text-gray-400 text-lg leading-relaxed font-light">We ensure your digital presence is optimized to guide your customers and potential customers through your funnel efficiently and effectively. Nothing kills a business faster than a poor digital experience. Make sure your system works flawlessly before scaling.</p>
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay Lean</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Traditional agencies are bloated, charging excessive fees simply to maintain heavy corporate overhead and train junior staff at your expense. We operate differently. Every project is handled exclusively by senior-level experts.</p>
                         </div>
                     </div>
                     
@@ -202,8 +207,8 @@
                             <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Media Strategy & Execution</h3>
-                            <p class="text-gray-400 text-lg leading-relaxed font-light">Leveraging the combination of technology, services, and data to deliver high-performing, customized media plans that are transparent to the placement level. Our media strategies involve paid and earned media in every stage of the sales funnel.</p>
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay Relevant</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Ads should be authentic and natural enough that people do not even realize they are watching an ad. Instead of interrupting the content your audience loves, we help you create content people actually want to see, using raw, genuine behind-the-scenes storytelling and real customers to spread your message. In an age of AI, originality and authenticity are the only ways to stand out.</p>
                         </div>
                     </div>
 
@@ -213,8 +218,8 @@
                             <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Direct-To-Consumer Growth</h3>
-                            <p class="text-gray-400 text-lg leading-relaxed font-light">We specialize in working with challenger DTC brands who are on the cusp of disrupting an industry. From clothing to solar panels, we've helped DTC optimize their customer growth strategy to always keep them one step ahead of their established competitors.</p>
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay in Front</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Modern audiences no longer wait for commercial breaks; their attention is strictly on their screens. We focus on placing your message directly on the devices where your customers actually spend their time, helping businesses build highly efficient campaigns that drive measurable results.</p>
                         </div>
                     </div>
 
@@ -224,8 +229,30 @@
                             <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Marketing Attribution & Analytics</h3>
-                            <p class="text-gray-400 text-lg leading-relaxed font-light">Our passion for transparency in media carries over into how we report results back to our clients. We create analytics frameworks, dashboards, and reporting structures that work. We've helped clients attribute millions in sales back to our efforts.</p>
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay Profitable</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Major social platforms are structurally designed to maximize your advertising budget. We aggressively protect your bottom line by eliminating wasteful spending, filtering out algorithm recommendations that solely benefit the platform, and deploying dynamic ad variations to prevent audience fatigue.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 05 -->
+                    <div class="flex flex-col md:flex-row md:items-center items-start gap-8 md:gap-20 reveal">
+                        <div class="w-16 md:w-32 flex-shrink-0 flex justify-center">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay Agile</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Innovative ideas lose their impact when subjected to endless layers of corporate approval. We help businesses bypass bureaucratic delays and avoid fleeting internet trends, focusing entirely on rapid, original execution that allows you to capitalize on market opportunities before your competitors even schedule a meeting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 06 -->
+                    <div class="flex flex-col md:flex-row md:items-center items-start gap-8 md:gap-20 reveal">
+                        <div class="w-16 md:w-32 flex-shrink-0 flex justify-center">
+                            <img src="https://blackbeach.netlify.app/images/favicon.png" alt="Black Beach Icon" class="w-16 h-16 md:w-24 md:h-24 service-icon">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-3xl md:text-4xl font-display font-medium text-white mb-6">Stay Independent</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Never find yourself being the smallest client at a massive agency. Our ultimate objective is to equip your internal team with the tools, strategies, and knowledge needed to run your own modern campaigns, effectively rendering our services unnecessary within five years.</p>
                         </div>
                     </div>
                 </div>
@@ -295,8 +322,13 @@
                         <div>
                             <input type="email" placeholder="Your Email" required class="input-minimal">
                         </div>
-                        <div>
-                            <textarea placeholder="Your Message" rows="5" class="input-minimal resize-none"></textarea>
+                        <div class="relative">
+                            <!-- We use a single space as a placeholder to trigger the CSS hiding trick -->
+                            <textarea placeholder=" " rows="6" class="input-minimal resize-none hide-placeholder relative z-10 bg-transparent"></textarea>
+                            <div class="rich-placeholder absolute top-4 left-0 w-full pointer-events-none transition-all duration-200 pr-4">
+                                <span class="font-bold text-gray-300 block mb-1">Type your message here</span>
+                                <span class="italic text-gray-500 text-sm block leading-relaxed">While our client roster and project list are currently full, we are still scheduling initial consultations for businesses and agencies looking to join our waitlist.</span>
+                            </div>
                         </div>
                         <div class="pt-6">
                             <button type="submit" class="w-full bg-white text-black font-semibold py-4 rounded hover:bg-gray-200 transition-colors uppercase tracking-[0.1em] text-sm">
