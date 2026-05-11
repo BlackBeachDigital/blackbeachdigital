@@ -152,7 +152,8 @@
             <div class="absolute inset-0 z-0 pointer-events-none flex justify-center items-start bg-black">
                 <!-- Wrapper that perfectly matches the video's aspect ratio, replicating object-contain exactly -->
                 <div class="relative w-full max-w-[calc(100vh*16/9)] aspect-video">
-                    <video id="hero-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-100">
+                    <!-- Added the 'poster' attribute to load a placeholder image instantly -->
+                    <video id="hero-video" autoplay loop muted playsinline poster="https://blackbeach.netlify.app/images/hero-poster.jpg" class="w-full h-full object-cover opacity-100">
                         <source src="https://blackbeach.netlify.app/videos/timelapse-noaudio.webm" type="video/webm">
                     </video>
                     
@@ -339,7 +340,7 @@
 
             <div class="max-w-6xl mx-auto px-6 text-center reveal relative z-10">
                 <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-tight text-white">
-                    Never forget that <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">warm beer</span> and <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">cold coffee</span> are the same temperature.
+                    Never forget that <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">warm beer</span> and <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500">cold coffee</span> are the same temperature.
                 </h2>
                 <p class="text-gray-400 text-xl max-w-2xl mx-auto font-light">
                     If you are interested in hiring Dan for a speaking engagement, please fill out the form at the bottom of the page. <span class="italic">Note that he may require the same backstage rider list as Frank Sinatra.</span>
