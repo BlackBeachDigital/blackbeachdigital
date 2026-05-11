@@ -358,6 +358,24 @@
             </div>
 
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 md:gap-32 relative z-10">
+                
+                <!-- Restored Left Column: Contact Info -->
+                <div class="reveal">
+                    <span class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4">// GET IN TOUCH</span>
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">Let's Talk.</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed font-light mb-10 max-w-md">
+                        Whether you are looking to scale your paid media, revamp your content strategy, or book Dan for a speaking engagement, drop us a line below.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <span class="block text-xs font-bold tracking-[0.1em] text-white uppercase mb-2">Direct Email</span>
+                            <a href="mailto:hello@blackbeachdigital.com" class="text-gray-400 hover:text-white transition-colors font-light">hello@blackbeachdigital.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form -->
                 <div class="reveal">
                     <!-- Added id="contact-form" to the form -->
                     <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
@@ -391,6 +409,10 @@
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Speaking Request</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
+                                    <input type="checkbox" name="Interest" value="Consulting" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Consulting</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group">
                                     <input type="checkbox" name="Interest" value="Something Else" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Something Else</span>
                                 </label>
@@ -401,7 +423,7 @@
                             <!-- Added name="message" and required attribute -->
                             <textarea name="message" placeholder=" " rows="6" required class="input-minimal resize-none hide-placeholder relative z-10 bg-transparent"></textarea>
                             <div class="rich-placeholder absolute top-4 left-0 w-full pointer-events-none transition-all duration-200 pr-4">
-                                <span class="font-bold text-gray-300 block mb-1">Type your message here</span>
+                                <span class="text-[#666] font-normal text-base block mb-2">Type your message here</span>
                                 <span class="italic text-gray-500 text-sm block leading-relaxed">While our client roster and project list are currently full, we are still scheduling initial consultations for businesses and agencies looking to join our waitlist.</span>
                             </div>
                         </div>
