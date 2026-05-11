@@ -286,8 +286,8 @@
             </div>
         </section>
 
-        <!-- Our Work Section -->
-        <section id="work" class="py-32 relative z-10 bg-black border-t border-gray-900">
+        <!-- Our Work Section (Clients) -->
+        <section id="work" class="py-20 relative z-10 bg-black border-t border-gray-900">
             <div class="max-w-7xl mx-auto px-6 reveal">
                 <div class="text-center mb-20 md:mb-24">
                     <span class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4">// CLIENTS PAST &amp; PRESENT</span>
@@ -316,6 +316,27 @@
                         <!-- Loading state, gets overwritten instantly by JS -->
                         <div class="text-gray-600 font-display uppercase tracking-widest text-sm animate-pulse">Loading Partners...</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Work / Reel Section -->
+        <section id="reel" class="py-32 relative z-10 bg-black border-t border-gray-900">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase block mb-4">// OUR WORK</span>
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">Billions of Views &amp; Counting...</h2>
+                </div>
+                
+                <!-- Vertical Video Container -->
+                <div class="max-w-sm md:max-w-md mx-auto rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10 reveal relative bg-gray-900">
+                    <!-- 
+                      NOTE: We use data-src instead of src here. 
+                      This prevents the browser from downloading the file on page load! 
+                    -->
+                    <video id="lazy-reel" class="w-full h-auto aspect-[9/16] object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" loop muted playsinline poster="https://blackbeach.netlify.app/images/reel-poster.jpg">
+                        <source data-src="https://blackbeach.netlify.app/videos/ourwork-2026.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </section>
@@ -518,6 +539,7 @@
             initScrollAnimations();
             initNavbarScroll();
             initLogoSlider(); // Initializes the dynamic Google Sheets slider
+            initLazyVideo();  // Initializes the Polite Load for the 33MB Reel
             
             // Force video playback for strict browsers/deployment environments
             const videos = ['about-video', 'hero-video', 'services-video'];
@@ -559,6 +581,38 @@
                     coffeeBtn.classList.remove('opacity-100', 'pointer-events-auto');
                 }
             });
+        }
+
+        // Lazy Load "Polite Load" Video
+        function initLazyVideo() {
+            const lazyVideo = document.getElementById('lazy-reel');
+            if (!lazyVideo) return;
+
+            // Setup a motion sensor for the scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // If the video container is near the screen...
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        const source = video.querySelector('source');
+                        
+                        // Swap data-src to src to trigger the 33MB download
+                        if (source && source.dataset.src) {
+                            source.src = source.dataset.src;
+                            video.load();
+                            video.play().catch(e => console.warn('Lazy video autoplay blocked:', e));
+                            
+                            // Stop watching it so we don't reload it every time they scroll by
+                            observer.unobserve(video); 
+                        }
+                    }
+                });
+            }, { 
+                // Start loading when the video is 300px away from the bottom of the screen
+                rootMargin: '0px 0px 300px 0px' 
+            });
+
+            observer.observe(lazyVideo);
         }
 
         // Scroll Reveal Animations
