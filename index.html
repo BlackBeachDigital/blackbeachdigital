@@ -111,52 +111,26 @@
         /* Scroll Reveal Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Service Icon Animation */
-        .service-icon {
-            opacity: 0;
-            transform: scale(0.5) rotate(-45deg);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transition-delay: 0.3s; /* Delays slightly so it pops in after the text starts sliding up */
-        }
-        .reveal.active .service-icon {
-            opacity: 0.9;
-            transform: scale(1) rotate(0deg);
-        }
-
-        /* Hide scrollbar for interactive slider */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Ambient Glow Positioning */
-        .ambient-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: -10;
-            mix-blend-mode: screen;
-        }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-49W18BLXWD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-49W18BLXWD');
+    </script>
 </head>
-<body class="antialiased selection:bg-gray-700 selection:text-white">
-
-    <!-- Ambient Glowing Orbs -->
-    <div class="ambient-glow top-0 left-1/4 w-[400px] h-[400px] bg-indigo-900/10"></div>
-    <div class="ambient-glow bottom-0 right-1/4 w-[600px] h-[600px] bg-gray-800/20"></div>
-
+<body class="bg-black text-white antialiased overflow-x-hidden selection:bg-white/30 selection:text-white">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-500 bg-transparent border-b border-transparent" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
