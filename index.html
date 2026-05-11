@@ -344,7 +344,7 @@
                               NOTE: We use data-src instead of src here. 
                               This prevents the browser from downloading the file on page load! 
                             -->
-                            <video id="lazy-reel" class="w-full h-auto aspect-[9/16] object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" loop muted playsinline poster="https://blackbeach.netlify.app/images/reel-poster.jpg">
+                            <video id="lazy-reel" class="w-full h-auto aspect-[9/16] object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" autoplay loop muted playsinline poster="https://blackbeach.netlify.app/images/reel-poster.jpg">
                                 <source data-src="https://blackbeach.netlify.app/images/ourwork.webm" type="video/webm">
                             </video>
                         </div>
@@ -600,6 +600,13 @@
             const lazyVideo = document.getElementById('lazy-reel');
             if (!lazyVideo) return;
 
+            // STRICT FALLBACK: If the browser ignores the HTML loop attribute, 
+            // this forces it to instantly rewind and play when it hits the end.
+            lazyVideo.addEventListener('ended', function() {
+                this.currentTime = 0.01; // slightly offset from 0 to avoid frame glitching
+                this.play().catch(e => console.warn('Forced loop playback failed:', e));
+            });
+
             // Setup a motion sensor for the scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -608,10 +615,14 @@
                         const video = entry.target;
                         const source = video.querySelector('source');
                         
-                        // Swap data-src to src to trigger the 33MB download
+                        // Swap data-src to src to trigger the download
                         if (source && source.dataset.src) {
                             source.src = source.dataset.src;
                             video.load();
+                            
+                            // Force the browser to loop it
+                            video.loop = true;
+                            
                             video.play().catch(e => console.warn('Lazy video autoplay blocked:', e));
                             
                             // Stop watching it so we don't reload it every time they scroll by
