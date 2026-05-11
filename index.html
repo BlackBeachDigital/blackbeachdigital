@@ -410,9 +410,16 @@
                 </div>
 
                 <!-- Right Column: Form -->
-                <div class="reveal">
+                <div class="reveal relative">
+                    
+                    <!-- Success Overlay (Hidden by default) -->
+                    <div id="form-success-overlay" class="absolute -inset-4 z-50 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm rounded-lg opacity-0 pointer-events-none transition-all duration-500">
+                        <svg class="w-16 h-16 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-2xl font-display font-bold text-white tracking-widest uppercase">Form Sent</span>
+                    </div>
+
                     <!-- Added id="contact-form" to the form -->
-                    <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                    <form id="contact-form" class="space-y-6 transition-all duration-500" onsubmit="handleFormSubmit(event)">
                         
                         <!-- Invisible Honeypot to trap spam bots -->
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -498,12 +505,6 @@
         </footer>
     </main>
 
-    <!-- Custom Toast Message for Form -->
-    <div id="toast" class="fixed bottom-10 right-10 bg-white text-black px-6 py-4 rounded shadow-2xl transform translate-y-20 opacity-0 transition-all duration-500 z-50 font-medium flex items-center gap-3">
-        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-        Consultation Request Sent.
-    </div>
-
     <!-- Scripts -->
     <script>
         // Form Handling via Web3Forms
@@ -520,7 +521,7 @@
             // Optional: Add subject line to the email
             formData.append("subject", "New Contact Form Submission from Black Beach Digital");
 
-            const toast = document.getElementById('toast');
+            const successOverlay = document.getElementById('form-success-overlay');
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
 
@@ -535,14 +536,16 @@
                 });
 
                 if (response.ok) {
-                    // Show success toast
-                    toast.classList.remove('translate-y-20', 'opacity-0');
+                    // Show success overlay and dim form
+                    successOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                    form.classList.add('opacity-20', 'grayscale', 'pointer-events-none');
                     
-                    // Hide toast after 4 seconds and reset form
+                    // Hide overlay after 5 seconds and reset form
                     setTimeout(() => {
-                        toast.classList.add('translate-y-20', 'opacity-0');
+                        successOverlay.classList.add('opacity-0', 'pointer-events-none');
+                        form.classList.remove('opacity-20', 'grayscale', 'pointer-events-none');
                         form.reset();
-                    }, 4000);
+                    }, 5000);
                 } else {
                     alert("Something went wrong. Please try again.");
                 }
