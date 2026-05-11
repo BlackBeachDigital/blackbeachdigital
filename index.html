@@ -81,6 +81,33 @@
             visibility: hidden;
         }
 
+        /* Custom Checkbox styles for iOS Safari compatibility */
+        .custom-checkbox {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: 1px solid #4b5563; /* tailwind gray-600 */
+            border-radius: 0.25rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .custom-checkbox:checked {
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 9px;
+            border: solid #050505; /* Black checkmark */
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
         /* Scroll Reveal Animations */
         .reveal {
             opacity: 0;
@@ -438,35 +465,35 @@
                             <span class="block text-sm text-gray-500 mb-4 uppercase tracking-wider font-semibold">Interested in?</span>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Paid Media" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Paid Media" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Paid Media</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Content Marketing" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Content Marketing" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Content Marketing</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Influencer Work" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Influencer Work" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Influencer Work</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Speaking Request" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Speaking Request" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Speaking Request</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Consulting" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Consulting" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Consulting</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="AI Training" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="AI Training" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">AI Training</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Website Build" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Website Build" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Website Build</span>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="Interest" value="Something Else" class="w-4 h-4 accent-white bg-transparent border-gray-600 rounded cursor-pointer">
+                                    <input type="checkbox" name="Interest" value="Something Else" class="w-4 h-4 custom-checkbox">
                                     <span class="text-gray-300 group-hover:text-white transition-colors text-sm">Something Else</span>
                                 </label>
                             </div>
