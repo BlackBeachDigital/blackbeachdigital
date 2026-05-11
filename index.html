@@ -413,6 +413,10 @@
                 <div class="reveal">
                     <!-- Added id="contact-form" to the form -->
                     <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                        
+                        <!-- Invisible Honeypot to trap spam bots -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                         <div>
                             <!-- Added name="name" -->
                             <input type="text" name="name" placeholder="Your Name" required class="input-minimal">
@@ -507,7 +511,7 @@
             e.preventDefault();
             
             // PASTE YOUR WEB3FORMS ACCESS KEY HERE:
-            const accessKey = "YOUR_ACCESS_KEY_HERE"; 
+            const accessKey = "6ebcdf75-f089-4c22-8899-edfde2d0dfd7"; 
             
             const form = e.target;
             const formData = new FormData(form);
