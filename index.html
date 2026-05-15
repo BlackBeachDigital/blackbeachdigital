@@ -55,6 +55,15 @@
             background: #555;
         }
 
+        /* Hide scrollbar utility for the logo slider */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
         /* Form Inputs */
         .input-minimal {
             background: transparent;
